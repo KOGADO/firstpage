@@ -1,0 +1,31 @@
+{% extends 'dobje/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Ингредиенты</h2>
+    <a href="{% url 'dobje:ingredient_create' %}" class="btn btn-success mb-3">Добавить ингредиент</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ ingredient.id }}</td>
+                <td>{{ ingredient.name }}</td>
+                <td>
+                    <a href="{% url 'dobje:ingredient_detail' ingredient.id %}" class="btn btn-info btn-sm">Просмотр</a>
+                    <a href="{% url 'dobje:ingredient_update' ingredient.id %}" class="btn btn-warning btn-sm">Изменить</a>
+                    <a href="{% url 'dobje:ingredient_delete' ingredient.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3">Нет ингредиентов.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

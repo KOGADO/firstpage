@@ -1,0 +1,17 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Детали адреса{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Детали адреса</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>ID:</strong> {{ address.id }}</li>
+        <li class="list-group-item"><strong>Пользователь:</strong> {{ address.user }}</li>
+        <li class="list-group-item"><strong>Адрес:</strong> {{ address.address_line }}</li>
+        <li class="list-group-item"><strong>Город:</strong> {{ address.city }}</li>
+        <li class="list-group-item"><strong>Индекс:</strong> {{ address.postal_code }}</li>
+    </ul>
+    <a href="{% url 'dobje:address_update' address.id %}" class="btn btn-primary mt-3">Изменить</a>
+    <a href="{% url 'dobje:address_delete' address.id %}" class="btn btn-danger mt-3">Удалить</a>
+    <a href="{% url 'dobje:address_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+{% endblock %} 

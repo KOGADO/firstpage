@@ -1,0 +1,15 @@
+{% extends 'dobje/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Доставка #{{ delivery.id }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Order:</strong> {{ delivery.order }}</li>
+        <li class="list-group-item"><strong>Status:</strong> {{ delivery.status }}</li>
+        <li class="list-group-item"><strong>Address:</strong> {{ delivery.address }}</li>
+        <li class="list-group-item"><strong>Created:</strong> {{ delivery.created_at|date:'d.m.Y H:i' }}</li>
+    </ul>
+    <a href="{% url 'dobje:delivery_update' delivery.id %}" class="btn btn-warning">Изменить</a>
+    <a href="{% url 'dobje:delivery_delete' delivery.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'dobje:delivery_list' %}" class="btn btn-secondary">Назад к списку</a>
+</div>
+{% endblock %} 

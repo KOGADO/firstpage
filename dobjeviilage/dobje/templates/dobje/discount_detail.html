@@ -1,0 +1,14 @@
+{% extends 'dobje/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Скидка #{{ discount.id }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Code:</strong> {{ discount.code }}</li>
+        <li class="list-group-item"><strong>Amount:</strong> {{ discount.amount }}</li>
+        <li class="list-group-item"><strong>Active:</strong> {{ discount.is_active|yesno:"Да,Нет" }}</li>
+    </ul>
+    <a href="{% url 'dobje:discount_update' discount.id %}" class="btn btn-warning">Изменить</a>
+    <a href="{% url 'dobje:discount_delete' discount.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'dobje:discount_list' %}" class="btn btn-secondary">Назад к списку</a>
+</div>
+{% endblock %} 

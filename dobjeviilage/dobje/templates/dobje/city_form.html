@@ -1,0 +1,13 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Форма города{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{% if form.instance.pk %}Редактировать город{% else %}Создать город{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="{% url 'dobje:city_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %} 

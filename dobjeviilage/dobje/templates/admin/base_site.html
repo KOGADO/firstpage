@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+{% block branding %}
+  {{ block.super }}
+  <div style="margin-top: 10px;">
+    {# <a href="{% url 'dobje:role_list' %}" target="_blank">Роли</a> | #}
+    <a href="{% url 'dobje:city_list' %}" target="_blank">Города</a> |
+    <a href="{% url 'dobje:user_list' %}" target="_blank">Пользователи</a> |
+    <a href="{% url 'dobje:address_list' %}" target="_blank">Адреса</a> |
+    <a href="{% url 'dobje:category_list' %}" target="_blank">Категории</a> |
+    {# <a href="{% url 'dobje:product_list' %}" target="_blank">Товары</a> | #}
+    <a href="{% url 'dobje:cart_list' %}" target="_blank">Корзины</a> |
+    <a href="{% url 'dobje:cartitem_list' %}" target="_blank">Элементы корзины</a> |
+    <a href="{% url 'dobje:favorite_list' %}" target="_blank">Избранное</a> |
+    <a href="{% url 'dobje:order_list' %}" target="_blank">Заказы</a> |
+    <a href="{% url 'dobje:orderitem_list' %}" target="_blank">Позиции заказа</a> |
+    <a href="{% url 'dobje:review_list' %}" target="_blank">Отзывы</a> |
+    <a href="{% url 'dobje:discount_list' %}" target="_blank">Скидки</a> |
+    <a href="{% url 'dobje:contactmessage_list' %}" target="_blank">Сообщения</a> |
+    <a href="{% url 'dobje:productingredient_list' %}" target="_blank">Ингредиенты</a> |
+    <a href="{% url 'dobje:payment_list' %}" target="_blank">Платежи</a> |
+    <a href="{% url 'dobje:delivery_list' %}" target="_blank">Доставки</a>
+  </div>
+{% endblock %} 

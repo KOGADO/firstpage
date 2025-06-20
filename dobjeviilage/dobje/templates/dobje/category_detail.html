@@ -1,0 +1,15 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Детали категории{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Детали категории</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>ID:</strong> {{ category.id }}</li>
+        <li class="list-group-item"><strong>Название:</strong> {{ category.name }}</li>
+        <li class="list-group-item"><strong>Описание:</strong> {{ category.description }}</li>
+    </ul>
+    <a href="{% url 'dobje:category_update' category.id %}" class="btn btn-primary mt-3">Изменить</a>
+    <a href="{% url 'dobje:category_delete' category.id %}" class="btn btn-danger mt-3">Удалить</a>
+    <a href="{% url 'dobje:category_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+{% endblock %} 

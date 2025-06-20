@@ -1,0 +1,36 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Панель менеджера{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Панель менеджера</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Товары</h5>
+                    <p class="card-text">Добавление, редактирование и удаление товаров.</p>
+                    <a href="{% url 'dobje:product_list' %}" class="btn btn-outline-success">Управление товарами</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Доставки</h5>
+                    <p class="card-text">Управление вариантами доставки.</p>
+                    <a href="{% url 'dobje:delivery_list' %}" class="btn btn-outline-info">Управление доставками</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Заказы</h5>
+                    <p class="card-text">Просмотр и управление заказами.</p>
+                    <a href="{% url 'dobje:order_list' %}" class="btn btn-outline-secondary">Список заказов</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

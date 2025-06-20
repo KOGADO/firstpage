@@ -1,0 +1,14 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Детали города{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Детали города</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>ID:</strong> {{ city.id }}</li>
+        <li class="list-group-item"><strong>Название:</strong> {{ city.name }}</li>
+    </ul>
+    <a href="{% url 'dobje:city_update' city.id %}" class="btn btn-primary mt-3">Изменить</a>
+    <a href="{% url 'dobje:city_delete' city.id %}" class="btn btn-danger mt-3">Удалить</a>
+    <a href="{% url 'dobje:city_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+{% endblock %} 

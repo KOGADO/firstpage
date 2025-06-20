@@ -1,0 +1,41 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Профиль клиента{% endblock %}
+{% block content %}
+<div class="container mt-5" style="max-width:600px;">
+    <h2 class="mb-4 text-center">Профиль клиента</h2>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Личные данные</h5>
+            <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+            <p><strong>Имя:</strong> {{ user.first_name }}</p>
+            <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Телефон:</strong> {{ user.phone }}</p>
+            <p><strong>Роль:</strong>
+                {% if profile and profile.role %}
+                    {{ profile.role.name }}
+                {% else %}
+                    Не указана
+                {% endif %}
+            </p>
+            <a href="{% url 'dobje:edit_client_profile' %}" class="btn btn-outline-primary">Редактировать</a>
+        </div>
+    </div>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Адреса доставки</h5>
+            {% if addresses %}
+                <ul class="list-group list-group-flush">
+                    {% for address in addresses %}
+                    <li class="list-group-item">
+                        {{ address.address_line }}, {{ address.city.name }} ({{ address.postal_code }})
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">Адреса не указаны.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

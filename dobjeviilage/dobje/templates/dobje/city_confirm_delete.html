@@ -1,0 +1,13 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Удалить город{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Удалить город</h2>
+    <p>Вы уверены, что хотите удалить город "{{ city.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'dobje:city_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %} 

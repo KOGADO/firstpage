@@ -1,0 +1,22 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Детали товара{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Детали товара</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>ID:</strong> {{ product.id }}</li>
+        <li class="list-group-item"><strong>Название:</strong> {{ product.name }}</li>
+        <li class="list-group-item"><strong>Описание:</strong> {{ product.description }}</li>
+        <li class="list-group-item"><strong>Категория:</strong> {{ product.category }}</li>
+        <li class="list-group-item"><strong>Цена:</strong> {{ product.price }}</li>
+        {% if product.image %}
+        <li class="list-group-item"><img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width:200px;"></li>
+        {% endif %}
+    </ul>
+    {% if user.is_authenticated and user.profile.role.name == 'Администратор' or user.is_authenticated and user.profile.role.name == 'Менеджер' %}
+    <a href="{% url 'dobje:product_update' product.id %}" class="btn btn-primary mt-3">Изменить</a>
+    <a href="{% url 'dobje:product_delete' product.id %}" class="btn btn-danger mt-3">Удалить</a>
+    {% endif %}
+    {# <a href="{% url 'dobje:product_list' %}" class="btn btn-secondary mt-3">Назад к списку</a> #}
+</div>
+{% endblock %} 

@@ -1,0 +1,14 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Детали роли{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Детали роли</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>ID:</strong> {{ role.id }}</li>
+        <li class="list-group-item"><strong>Название:</strong> {{ role.name }}</li>
+    </ul>
+    <a href="{% url 'dobje:role_update' role.id %}" class="btn btn-primary mt-3">Изменить</a>
+    <a href="{% url 'dobje:role_delete' role.id %}" class="btn btn-danger mt-3">Удалить</a>
+    {# <a href="{% url 'dobje:role_list' %}" class="btn btn-secondary mt-3">Назад к списку</a> #}
+</div>
+{% endblock %} 

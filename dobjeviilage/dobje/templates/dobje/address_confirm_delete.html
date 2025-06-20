@@ -1,0 +1,13 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Удалить адрес{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Удалить адрес</h2>
+    <p>Вы уверены, что хотите удалить адрес "{{ address.address_line }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'dobje:address_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %} 

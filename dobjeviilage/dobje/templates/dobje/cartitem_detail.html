@@ -1,0 +1,14 @@
+{% extends 'dobje/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Cart Item #{{ cartitem.id }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Cart:</strong> {{ cartitem.cart }}</li>
+        <li class="list-group-item"><strong>Product:</strong> {{ cartitem.product }}</li>
+        <li class="list-group-item"><strong>Quantity:</strong> {{ cartitem.quantity }}</li>
+    </ul>
+    <a href="{% url 'dobje:cartitem_update' cartitem.id %}" class="btn btn-warning">Изменить</a>
+    <a href="{% url 'dobje:cartitem_delete' cartitem.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'dobje:cartitem_list' %}" class="btn btn-secondary">Назад к списку</a>
+</div>
+{% endblock %} 

@@ -1,0 +1,151 @@
+{% extends 'dobje/base.html' %}
+{% block title %}Главная клиента{% endblock %}
+{% block content %}
+<!-- Баннер -->
+<div class="container-fluid p-0 mb-5">
+    <div class="bg-dark text-white text-center py-5" style="background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; min-height: 300px; position: relative;">
+        <div style="background: rgba(0,0,0,0.5); position: absolute; top:0; left:0; right:0; bottom:0;"></div>
+        <div class="position-relative" style="z-index:2;">
+            <h1 class="display-4 fw-bold mb-3">Добро пожаловать, {{ user.first_name|default:user.username }}!</h1>
+            <p class="lead mb-4">Вкусная еда и быстрая доставка — всё для вашего комфорта!</p>
+            <a href="{% url 'dobje:product_list' %}" class="btn btn-lg btn-warning px-5 py-3 fw-bold shadow">Перейти в каталог</a>
+        </div>
+    </div>
+</div>
+
+<!-- Быстрые ссылки -->
+<div class="container mb-5">
+    <div class="row justify-content-center g-4">
+        <div class="col-6 col-md-3">
+            <a href="{% url 'dobje:order_list' %}" class="text-decoration-none text-dark">
+                <div class="card text-center h-100 shadow-sm hover-shadow">
+                    <div class="card-body">
+                        <img src="https://img.icons8.com/color/96/shopping-bag.png" alt="Мои заказы" style="width:48px;">
+                        <h6 class="mt-2">Мои заказы</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a href="#" class="text-decoration-none text-dark">
+                <div class="card text-center h-100 shadow-sm hover-shadow">
+                    <div class="card-body">
+                        <img src="https://img.icons8.com/color/96/like--v3.png" alt="Избранное" style="width:48px;">
+                        <h6 class="mt-2">Избранное</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-3">
+            <a href="{% url 'dobje:client_profile' %}" class="text-decoration-none text-dark">
+                <div class="card text-center h-100 shadow-sm hover-shadow">
+                    <div class="card-body">
+                        <img src="https://img.icons8.com/color/96/user-male-circle--v2.png" alt="Профиль" style="width:48px;">
+                        <h6 class="mt-2">Профиль</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Популярные блюда -->
+<div class="container mb-5">
+    <h2 class="text-center mb-4" style="color:#FF69B4;">Популярные блюда</h2>
+    <div class="row g-4 justify-content-center">
+        {% for product in popular_products %}
+        <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm border-0 hover-shadow">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <span class="fw-bold h5">{{ product.price }} ₽</span>
+                    <a href="{% url 'dobje:product_detail' product.id %}" class="btn btn-outline-primary btn-sm ms-3">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Преимущества -->
+<div class="container mb-5">
+    <h2 class="text-center mb-4" style="color:#FF69B4;">Почему выбирают нас?</h2>
+    <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-3 text-center">
+            <img src="https://img.icons8.com/fluency/96/delivery-scooter.png" alt="Быстро" style="width:48px;">
+            <h6 class="mt-2">Быстрая доставка</h6>
+            <p class="small">Доставим ваш заказ за 30 минут или быстрее!</p>
+        </div>
+        <div class="col-6 col-md-3 text-center">
+            <img src="https://img.icons8.com/color/96/ingredients.png" alt="Свежие продукты" style="width:48px;">
+            <h6 class="mt-2">Свежие продукты</h6>
+            <p class="small">Используем только свежие и качественные ингредиенты.</p>
+        </div>
+        <div class="col-6 col-md-3 text-center">
+            <img src="https://img.icons8.com/color/96/discount--v1.png" alt="Скидки" style="width:48px;">
+            <h6 class="mt-2">Выгодные акции</h6>
+            <p class="small">Постоянные скидки и специальные предложения для клиентов.</p>
+        </div>
+        <div class="col-6 col-md-3 text-center">
+            <img src="https://img.icons8.com/color/96/customer-support.png" alt="Поддержка" style="width:48px;">
+            <h6 class="mt-2">Поддержка 24/7</h6>
+            <p class="small">Всегда готовы помочь вам с любым вопросом.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Отзывы -->
+<div class="container mb-5">
+    <h2 class="text-center mb-4" style="color:#FF69B4;">Отзывы наших клиентов</h2>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Клиент" class="rounded-circle me-2" style="width:40px; height:40px;">
+                        <strong>Алексей</strong>
+                    </div>
+                    <p class="mb-1">Очень вкусно и быстро! Всегда свежие продукты. Спасибо!</p>
+                    <span class="text-warning">★★★★★</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Клиент" class="rounded-circle me-2" style="width:40px; height:40px;">
+                        <strong>Мария</strong>
+                    </div>
+                    <p class="mb-1">Доставка всегда вовремя, а блюда — просто супер!</p>
+                    <span class="text-warning">★★★★★</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Клиент" class="rounded-circle me-2" style="width:40px; height:40px;">
+                        <strong>Иван</strong>
+                    </div>
+                    <p class="mb-1">Лучший сервис в городе! Рекомендую всем друзьям.</p>
+                    <span class="text-warning">★★★★★</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.hover-shadow:hover {
+    box-shadow: 0 8px 32px rgba(255,105,180,0.15) !important;
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.2s;
+}
+</style>
+{% endblock %} 

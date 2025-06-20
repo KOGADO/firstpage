@@ -1,0 +1,14 @@
+{% extends 'dobje/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Ингредиент продукта #{{ productingredient.id }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Продукт:</strong> {{ productingredient.product }}</li>
+        <li class="list-group-item"><strong>Название ингредиента:</strong> {{ productingredient.name }}</li>
+        <li class="list-group-item"><strong>Количество:</strong> {{ productingredient.quantity }}</li>
+    </ul>
+    <a href="{% url 'dobje:productingredient_update' productingredient.id %}" class="btn btn-warning">Изменить</a>
+    <a href="{% url 'dobje:productingredient_delete' productingredient.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'dobje:productingredient_list' %}" class="btn btn-secondary">Назад к списку</a>
+</div>
+{% endblock %} 

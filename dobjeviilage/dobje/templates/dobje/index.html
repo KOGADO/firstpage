@@ -1,0 +1,81 @@
+{% extends 'dobje/base.html' %}
+{% load static %}
+
+{% block title %}Главная - Еды Добжевиль{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Приветственный баннер -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card bg-dark text-white">
+                <img src="{% static 'dobje/images/banner.jpg' %}" class="card-img" alt="Добжевиль">
+                <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
+                    <h1 class="display-4 fw-bold">Добро пожаловать в Добжевиль</h1>
+                    <p class="lead">Лучшие блюда для вашего стола</p>
+                    {# <a href="{% url 'dobje:product_list' %}" class="btn btn-primary btn-lg mt-3">Смотреть меню</a> #}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Популярные категории -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Категории</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for category in categories %}
+                <div class="col">
+                    <div class="card h-100">
+                        {% if category.image %}
+                        <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="card-text">{{ category.description|truncatewords:20 }}</p>
+                            <a href="{% url 'dobje:category_detail' category.pk %}" class="btn btn-outline-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Новые поступления -->
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">Новые поступления</h2>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for product in products %}
+                <div class="col">
+                    <div class="card h-100">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+                            <p class="card-text">
+                                <strong class="text-primary">{{ product.price }} ₽</strong>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{% url 'dobje:product_detail' product.pk %}" class="btn btn-outline-primary">Подробнее</a>
+                                {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'dobje:cart_add' product.pk %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

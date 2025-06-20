@@ -1,0 +1,15 @@
+{% extends 'dobje/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Платеж #{{ payment.id }}</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Order:</strong> {{ payment.order }}</li>
+        <li class="list-group-item"><strong>Amount:</strong> {{ payment.amount }}</li>
+        <li class="list-group-item"><strong>Status:</strong> {{ payment.status }}</li>
+        <li class="list-group-item"><strong>Created:</strong> {{ payment.created_at|date:'d.m.Y H:i' }}</li>
+    </ul>
+    <a href="{% url 'dobje:payment_update' payment.id %}" class="btn btn-warning">Изменить</a>
+    <a href="{% url 'dobje:payment_delete' payment.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'dobje:payment_list' %}" class="btn btn-secondary">Назад к списку</a>
+</div>
+{% endblock %} 
